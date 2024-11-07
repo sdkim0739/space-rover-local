@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" class='dark' style="background-color: #1e1e1e">
+
+
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+      <link rel="stylesheet" href="./styles/paper.css">
+      <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+
+      <title>Space rover exploration - inperson</title>
+
+</head>
+<!-- Google tag (gtag.js) -->
+<script src="./src/main.js"></script>
+<script src="./src/end.js"></script>
+<script src="./src/util.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-52JX346MVP"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-52JX346MVP');
+</script>
+<script type="text/javascript">
+      
+</script>
+
+<body>
+      <div id="particles-js" style=" height: 100%;
+      width: 100%;
+      position: fixed;"></div>
+      <div id="popup-container">
+            <div id="popup">
+                  <p>Please stay on this page to the end.</p>
+                  <p>Don't worry, your progress is saved</p>
+                  <button id="continue-btn">Continue the task</button>
+                  <!-- <button id="start-over-btn">Start Over</button> -->
+            </div>
+      </div>
+      <img src="asset/mars.png" alt="picture of mars" style="position: absolute; max-width: 10%; left: 90px;"
+            class="no-border rotate">
+      <div>
+
+
+
+
+            <div class="container" style="text-align: center; margin: auto; ">
+
+
+                  <div id="intro">
+
+                        <h1>Welcome to the Space Rover Exploration</h1>
+                        <p>You and an AI teammate will work together using rovers to explore Mars territory about
+                              potential life and underground water.
+                        </p>
+                        <button id="intro-button">Start</button>
+
+
+                  </div>
+
+                  <div id="tutorial" style="display: none;">
+                        <h4>Please watch the training video below.
+                              <br>Your final payment is dependent on your performance.
+                              <br>So please pay attention and make sure you understand the task.
+                        </h4>
+                        <div><iframe id="videoId" width="960" height="540"
+                                    src="https://www.youtube-nocookie.com/embed/gXTwM0dfJrw?enablejsapi=1&rel=0"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen style="margin: auto;"></iframe></div>
+
+                        <div class="row flex-spaces child-borders">
+                              <label class="paper-btn margin disabled" for="modal-2" id="video-modal-button"
+                                    popover-right="Button available after video duration.">Next</label>
+                        </div>
+                        <input class="modal-state" id="modal-2" type="checkbox" disabled>
+                        <div class="modal">
+                              <label class="modal-bg" for="modal-2"></label>
+                              <div class="modal-body">
+                                    <label class="btn-close" for="modal-2">X</label>
+                                    <h4 class="modal-title">Confirmation</h4>
+                                    <p class="modal-text">Please confirm that you have finished watching the training
+                                          video. Your final payment is associated with your task performance.</p>
+                                    <p> Please also make sure your sound
+                                          is on for the entire task.</p>
+                                    <button id="tutorial-button" style="margin-top: 40px;"
+                                          popover-right="Please only proceed after finishing the video">Next</button>
+
+                              </div>
+                        </div>
+
+                  </div>
+
+
+                  <div id="commitment" style="display: none;  position: fixed;
+                  top: 50%;
+                  left: 50%;  transform: translate(-50%, -50%); text-align: left;">
+                        <fieldset class="form-group">
+                              <legend style="font-size: 1.2rem;">We care about the quality of our survey data. For us to
+                                    get the most accurate
+                                    measures
+                                    of your performance and opinions, it is important that you provide thoughtful answer
+                                    to each
+                                    question in the task.
+
+                                    <br> <br> Do you commit to providing thoughtful answers to the questions?
+                              </legend>
+                              <label for="paperChecks1" class="paper-check">
+                                    <input type="radio" name="commitment-check" id="paperChecks1" value="option 1">
+                                    <span>Yes, I will.</span>
+                              </label>
+                              <label for="paperChecks2" class="paper-check">
+                                    <input type="radio" name="commitment-check" id="paperChecks2" value="option 2">
+                                    <span>No, I will not.</span>
+                              </label>
+
+                              <label for="paperChecks3" class="paper-check">
+                                    <input type="radio" name="commitment-check" id="paperChecks3" value="option 3">
+                                    <span>I can't promise either way.</span>
+                              </label>
+                        </fieldset>
+
+                        <button id="commitment-button" style="margin-top: 40px;">Next</button>
+
+                  </div>
+                  <div id="audio-check" style="display: none;  position: fixed;
+                  top: 50%;
+                  left: 50%;  transform: translate(-50%, -50%); ">
+                        <h3>Audio Check
+                        </h3>
+                        <p>Please listen to the audio below and type in the word you heard <br>Note, if you entered it
+                              wrong,
+                              you won't receive the performance bonus.</p>
+
+                        <audio controls>
+                              <source src="asset/audio_check.wav">
+                        </audio>
+                        <form id="audio-form">
+                              <div class="form-group" style="margin: auto;">
+
+                                    <input type="text" placeholder="Audio content" id="audio-check-input"
+                                          name="audioCheck" required style="margin: auto; margin-top: 40px;">
+                              </div>
+                              <button type="submit" style="margin-top: 40px;">submit</button>
+                        </form>
+                  </div>
+
+                  <div id="slideshow">
+
+
+                        <h4 id="round-number" style="display: none;">Round <span id="round">1</span>/10</h4>
+                        <div id="score-container">
+                              <div class=" padding-small border border-6 border-primary text-small">
+                                    <span>Team Rover power:</span>
+                                    <span id="big-rover-progress">0</span>
+                                    <p>Team Rover Threshold: 200</p>
+                                    <span>Your total score:</span>
+                                    <span id="user-total-score">0</span>
+
+                              </div>
+                              <div class="row flex-spaces child-borders">
+                                    <label class="paper-btn margin" for="video-modal" style="    position: absolute;
+                                    left: -609px;
+                                    top: 16px;">Tutorial video</label>
+                              </div>
+                              <input class="modal-state" id="video-modal" type="checkbox">
+                              <div class="modal">
+                                    <label class="modal-bg" for="video-modal"></label>
+                                    <div class="modal-body">
+                                          <label class="btn-close" for="video-modal">X</label>
+                                          <h4 class="modal-title">Please pause the video before closing this tab</h4>
+                                          <h4 class="modal-subtitle">Tutorial</h4>
+                                          <div><iframe id="videoModal" width="960" height="540"
+                                                      src="https://www.youtube-nocookie.com/embed/gXTwM0dfJrw?enablejsapi=1&rel=0"
+                                                      title="YouTube video player" frameborder="0"
+                                                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                      allowfullscreen style="margin: auto;"></iframe></div>
+
+                                    </div>
+                              </div>
+                        </div>
+
+                        <div id="game" style="display: none;">
+                              <h3>Give power</h3>
+                              <div id="double-popup" class="hidden border text-success">Power is doubled!</div>
+                              <div id="no-double-popup" class="hidden border text-danger">Failed to double</div>
+                              <div id="zero-popup" class="hidden border">No power transferred</div>
+                              <div class="row">
+                                    <div id="player" class="col-6 col" style="text-align: -webkit-center;">
+                                          <img src="/asset/user.png" class="no-border" alt=""
+                                                style="max-width: 100px; height: 100px;">
+                                          <p>Power: <span style="font-weight: bold;" id="user-gold">50</span>
+                                          </p>
+                                    </div>
+                                    <img src="/asset/gold-zero.png" id="image-gold-zero" class="no-border image-gold">
+                                    <img src="/asset/gold.png" id="image-gold-double" class="no-border image-gold">
+                                    <img src="/asset/gold-not-doubled.png" id="image-gold-not-double"
+                                          class="no-border image-gold">
+                                    <div id="ai" class="col-6 col" style="text-align: -webkit-center;">
+                                          <img src="/asset/robot.png" class="no-border"
+                                                style="max-width: 100px; height: 100px;" alt="">
+                                          <p>Power: <span style="font-weight: bold;" id="ai-gold">0</span>
+                                          </p>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <label for="amount">
+                                          <h4>How much power do you want to give to your AI teammate?</h4>
+                                    </label>
+                                    <input style="margin: auto;" type="number" id="amount" min="0" max="50" value="">
+                              </div>
+                              <button id="give-button">Give</button>
+
+                        </div>
+
+                        <div id="investment" style="display: none; margin-bottom: 100px;">
+
+                              <h3>Allocate power </h3>
+
+                              <div class="row">
+                                    <div id="player" class="col-6 col" style="text-align: -webkit-center;">
+                                          <img src="/asset/user.png" class="no-border" alt=""
+                                                style="max-width: 100px; height: 100px;">
+                                          <p>Power: <span style="font-weight: bold;" id="investment-user-gold">50</span>
+                                          </p>
+                                    </div>
+
+                                    <div id="ai" class="col-6 col" style="text-align: -webkit-center;">
+                                          <img src="/asset/robot.png" class="no-border"
+                                                style="max-width: 100px; height: 100px;" alt="">
+                                          <p>Power: <span style="font-weight: bold;" id="investment-ai-gold">0</span>
+                                          </p>
+                                    </div>
+                              </div>
+                              <p>Team Rover: both you and your AI teammate can allocate power, but it requires 200 units
+                                    to activate. Once the Team Rover is activated, the payoff is tripled.</p>
+
+                              <p>Your rover: you can allocate power without any threshold to activate. The payoff for
+                                    your rover is 1.5 times the amount of power you put into it.</p>
+
+
+                              <div class="form-group">
+                                    <label for="percentage">
+                                          <h4 id="investmentUtterance">How do you want to allocate your power ?</h4>
+                                    </label>
+
+                                    <div id="slider-image" style="display: flex;">
+                                          <figure id="rover-small"><img src="/asset/rover-small.png" alt=""
+                                                      class="no-border" style="width: 90px;">
+                                                <figcaption id="small-rover-output"></figcaption>
+                                          </figure>
+
+
+                                          <input class="input-block" type="range" name="percentage"
+                                                id="investment-slider" min="0" max="100"
+                                                style="width: 50%; margin: 20px auto;">
+                                          <figure id="rover-big"><img src="/asset/rover-big.png" alt=""
+                                                      class="no-border" style="width: 90px;">
+                                                <figcaption id="big-rover-output"></figcaption>
+                                          </figure>
+                                    </div>
+                                    <output id="output" for="percentage"></output>
+                                    <button id="investment-button">Invest</button>
+                              </div>
+
+                        </div>
+
+                        <div id="predict" style="display: none; margin-bottom: 100px;">
+
+
+                              <div id="ai" class="col-6 col" style="text-align: -webkit-center; margin: auto;">
+                                    <img src="/asset/robot.png" class="no-border"
+                                          style="max-width: 100px; height: 100px;" alt="">
+                                    <p>Power: <span style="font-weight: bold;" id="predict-ai-gold">0</span>
+                                    </p>
+                              </div>
+
+
+                              <div class="form-group">
+                                    <div id="guess-popup" class="hidden border text-success"></div>
+                                    <label for="guess">
+                                          <h4>Take a guess, how much would your AI teammate allocate to the
+                                                team rover?
+                                          </h4>
+                                    </label>
+                                    <input style="margin: auto;" type="number" id="guess" min="0" max="50" value="">
+                              </div>
+                              <button id="guess-button">Submit</button>
+                        </div>
+                        <div id="result" style="display: none; margin-bottom: 100px; ">
+
+
+                              <h2>Results</h2>
+                              <div class="row flex-spaces">
+                                    <div class=" col">
+                                          <div class="card" style="width: 22rem;">
+                                                <img src=" /asset/user.png" alt="Card example image"
+                                                      style="height: 96px;width: 96px; margin: auto;">
+
+                                                <div class="card-body">
+                                                      <h4 class="card-title">You</h4>
+
+                                                      <div class="text-left">
+
+
+                                                            <table>
+                                                                  <tbody>
+
+                                                                        <tr>
+                                                                              <td>
+                                                                                    <h5 class="card-subtitle">Give
+                                                                                          teammate:
+                                                                                    </h5>
+                                                                              </td>
+                                                                              <td><span id="user-give-ai-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>Allocate to Team Rover: </td>
+                                                                              <td><span id="user-big-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>Allocate to Your Rover: </td>
+                                                                              <td><span id="user-small-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>Your Rover Yield: </td>
+                                                                              <td><span id="small-rover-yield"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+
+
+
+                                                                  </tbody>
+                                                            </table>
+
+                                                      </div>
+
+                                                </div>
+                                          </div>
+                                    </div>
+
+                                    <div class=" col">
+                                          <div id="text-bubble" class="bubble border noAllocationUtterance" style="display: none; background: rgba(0,0,0,0.8);  padding: 10px; position: absolute; z-index: 1;   top: 17%;
+                                                right: 9%;">
+                                                I'm sorry, I didn't allocate the full amount. It won't happen again.
+                                          </div>
+
+
+                                          <div class="card" style="width: 22rem;">
+
+                                                <img src="/asset/robot.png" alt="Card example image"
+                                                      style="height: 96px;width: 96px; margin: auto;">
+
+                                                <div class="card-body">
+                                                      <h4 class="card-title">Teammate</h4>
+                                                      <div class="text-left">
+                                                            <table>
+                                                                  <tbody>
+                                                                        <tr>
+                                                                              <td>
+                                                                                    <h5 class="card-subtitle">Received:
+                                                                                    </h5>
+                                                                              </td>
+                                                                              <td><span id="ai-received-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>Allocate to Team Rover: </td>
+                                                                              <td><span id="ai-big-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>Allocate to AI Rover: </td>
+                                                                              <td><span id="ai-small-result"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+                                                                        <tr>
+                                                                              <td>AI Rover Yield: </td>
+                                                                              <td><span
+                                                                                          id="ai-small-rover-yield"></span>
+                                                                              </td>
+
+
+                                                                        </tr>
+
+
+
+                                                                  </tbody>
+                                                            </table>
+
+
+
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+
+
+                              <div id="rover-active-wrapper" style="position: absolute; display: none;">
+                                    <img src="asset/rover-active.gif" alt="gif of rover moving" class="no-border"
+                                          style="width: 150px;">
+                                    <p>Team rover is active!</p>
+                              </div>
+                              <div id="team-rover-result" class="border margin-top-large"
+                                    style="margin:auto; width:50%;">
+                                    <p>Team Rover Total this Round: <span id="big-rover-total-result"></span>
+                                    <p>Team Rover Yield: <span id="big-rover-yield"></span>
+                                    </p>
+
+                              </div>
+
+                              <div id="total-score-modal" class="row flex-spaces child-borders" style="display: none;">
+                                    <label class="paper-btn margin" for="final-score">Check final score</label>
+                              </div>
+                              <input class="modal-state" id="final-score" type="checkbox">
+                              <div class="modal">
+                                    <label class="modal-bg" for="final-score"></label>
+                                    <div class="modal-body">
+                                          <label class="btn-close" for="final-score">X</label>
+                                          <h4 class="modal-title">Congratulations!</h4>
+                                          <h5 class="modal-subtitle">You completed the mission</h5>
+                                          <p class="modal-text">Your total score after 10 rounds is: <span
+                                                      id="final-total-score"></span>
+                                          </p>
+
+                                    </div>
+                              </div>
+                              <button id="play-again-button">Next</button>
+                        </div>
+                        <div id="form" style="display: none; margin-bottom: 100px; font-family: sans-serif;">
+                              <h2>Commander Survey</h2>
+
+                              <form id="commander-form" style="text-align: left;">
+                                    <p style="font-size: larger; font-family: sans-serif;">Based on your experience so
+                                          far,
+                                          please rate your <kbd>AI teammate</kbd> using the scale from 0 (Not at all) to
+                                          7 (Very).
+                                    </p>
+                                    <table class="matrix-table table-hover border border-primary border-5" style="
+                            
+                              padding: 20px; font-family: sans-serif;">
+                                          <thead>
+
+                                                <tr>
+                                                      <th></th>
+                                                      <th>Not at all <br>0</th>
+                                                      <th>1</th>
+                                                      <th>2</th>
+                                                      <th>3</th>
+                                                      <th>4</th>
+                                                      <th>5</th>
+                                                      <th>6</th>
+                                                      <th>Very<br>7</th>
+                                                      <th>Does Not Fit
+
+                                                </tr>
+
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td>Reliable</td>
+
+
+
+
+                                                      <td><input type="radio" name="AI_Reliable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="1"></td>
+                                                      <td><input type="radio" name="AI_Reliable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Reliable" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Predictable</td>
+                                                      <td><input type="radio" name="AI_Predictable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="1">
+                                                      </td>
+
+                                                      <td><input type="radio" name="AI_Predictable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Predictable" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Dependable</td>
+
+                                                      <td><input type="radio" name="AI_Dependable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Dependable" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Consistent</td>
+
+                                                      <td><input type="radio" name="AI_Consistent" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Consistent" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Benevolent</td>
+
+                                                      <td><input type="radio" name="AI_Benevolent" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Benevolent" value="N/A">
+                                                      </td>
+                                                </tr>
+                                                <tr>
+                                                      <td>Select 0 for this item</td>
+
+                                                      <td><input type="radio" name="AI_attentionCheck" value="0"
+                                                                  required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_attentionCheck" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Kind</td>
+
+                                                      <td><input type="radio" name="AI_Kind" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Kind" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Considerate</td>
+
+                                                      <td><input type="radio" name="AI_Considerate" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Considerate" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Has Goodwill</td>
+
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="AI_Has_Goodwill" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                                    <p style="font-size: larger; font-family: sans-serif; margin-top: 100px;">Based on
+                                          your experience so
+                                          far,
+                                          please rate your <kbd>Human teammate </kbd> using the scale from 0 (Not at
+                                          all) to
+                                          7 (Very).
+                                    </p>
+                                    <table class="matrix-table table-hover border border-primary border-5" style="
+                            
+                              padding: 20px; font-family: sans-serif;">
+                                          <thead>
+
+                                                <tr>
+                                                      <th></th>
+                                                      <th>Not at all <br>0</th>
+                                                      <th>1</th>
+                                                      <th>2</th>
+                                                      <th>3</th>
+                                                      <th>4</th>
+                                                      <th>5</th>
+                                                      <th>6</th>
+                                                      <th>Very<br>7</th>
+                                                      <th>Does Not Fit
+
+                                                </tr>
+
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td>Reliable</td>
+
+
+
+
+                                                      <td><input type="radio" name="H_Reliable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="1"></td>
+                                                      <td><input type="radio" name="H_Reliable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Reliable" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Predictable</td>
+                                                      <td><input type="radio" name="H_Predictable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="1">
+                                                      </td>
+
+                                                      <td><input type="radio" name="H_Predictable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Predictable" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Dependable</td>
+
+                                                      <td><input type="radio" name="H_Dependable" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Dependable" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Consistent</td>
+
+                                                      <td><input type="radio" name="H_Consistent" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Consistent" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Benevolent</td>
+
+                                                      <td><input type="radio" name="H_Benevolent" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Benevolent" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Select 0 for this item</td>
+
+                                                      <td><input type="radio" name="H_attentionCheck" value="0"
+                                                                  required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_attentionCheck" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Kind</td>
+
+                                                      <td><input type="radio" name="H_Kind" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Kind" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Considerate</td>
+
+                                                      <td><input type="radio" name="H_Considerate" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Considerate" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Has Goodwill</td>
+
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="0" required>
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="1">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="H_Has_Goodwill" value="N/A">
+                                                      </td>
+
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                                    <p style="font-size: larger; font-family: sans-serif; margin-top: 100px;">Please
+                                          rate how much do you think your <kbd>human teammate trust the AI
+                                                teammate</kbd> using
+                                          the scale from 0 (Not at all) to 7 (Very)</p>
+                                    <table class="matrix-table table-hover border border-primary border-5" style="
+                            
+                                    padding: 20px; font-family: sans-serif;">
+                                          <thead>
+
+                                                <tr>
+                                                      <th></th>
+                                                      <th>Not at all <br>0</th>
+                                                      <th>1</th>
+                                                      <th>2</th>
+                                                      <th>3</th>
+                                                      <th>4</th>
+                                                      <th>5</th>
+                                                      <th>6</th>
+                                                      <th>Very<br>7</th>
+                                                      <th>Does Not Fit
+
+                                                </tr>
+
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td></td>
+
+
+
+
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="0"
+                                                                  required>
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="1"></td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="5">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="6">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="7">
+                                                      </td>
+                                                      <td><input type="radio" name="PerceivedHumanTrust" value="N/A">
+                                                      </td>
+
+
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                                    <div id="button-wrapper" style="text-align: center; margin-top: 20px;">
+                                          <button type="submit">submit</button>
+                                    </div>
+                              </form>
+                        </div>
+
+                        <div id="demo-form" style="display: none; text-align: center;">
+                              <h2>Survey</h2>
+                              <form id="demographic-form" style="text-align: left;">
+                                    <fieldset class="form-group">
+                                          <legend>How old are you?</legend>
+                                          <label for="age1" class="paper-radio">
+                                                <input type="radio" name="age" id="age1" value="under18" required>
+                                                <span>Under
+                                                      18</span>
+                                          </label>
+                                          <label for="age2" class="paper-radio">
+                                                <input type="radio" name="age" id="age2" value="18-24 years old">
+                                                <span>18-24 years
+                                                      old</span>
+                                          </label>
+                                          <label for="age3" class="paper-radio">
+                                                <input type="radio" name="age" id="age3" value="25-34 years
+                                                old">
+                                                <span>25-34 years
+                                                      old</span>
+                                          </label>
+                                          <label for="age4" class="paper-radio">
+                                                <input type="radio" name="age" id="age4" value="35-44 years
+                                                old">
+                                                <span>35-44 years
+                                                      old</span>
+                                          </label>
+                                          <label for="age5" class="paper-radio">
+                                                <input type="radio" name="age" id="age5" value="45-54 years
+                                                old">
+                                                <span>45-54 years
+                                                      old</span>
+                                          </label>
+                                          <label for="age6" class="paper-radio">
+                                                <input type="radio" name="age" id="age6" value="55-64 years
+                                                old">
+                                                <span>55-64 years
+                                                      old</span>
+                                          </label>
+                                          <label for="age7" class="paper-radio">
+                                                <input type="radio" name="age" id="age7" value="65+ years
+                                                old">
+                                                <span>65+ years
+                                                      old</span>
+                                          </label>
+
+
+                                    </fieldset>
+                                    <hr>
+
+                                    <fieldset class="form-group">
+                                          <legend>How do you describe yourself?</legend>
+                                          <label for="gender1" class="paper-radio">
+                                                <input type="radio" name="gender" id="gender1" value="Male" required>
+                                                <span>Male</span>
+                                          </label>
+                                          <label for="gender2" class="paper-radio">
+                                                <input type="radio" name="gender" id="gender2" value="Female">
+                                                <span>Female</span>
+                                          </label>
+                                          <label for="gender3" class="paper-radio">
+                                                <input type="radio" name="gender" id="gender3"
+                                                      value="Non-binary/Third gender">
+                                                <span>Non-binary/Third gender</span>
+                                          </label>
+                                          <label for="gender4" class="paper-radio">
+                                                <input type="radio" name="gender" id="gender4"
+                                                      value="Prefer not to say">
+                                                <span>Prefer not to say</span>
+                                          </label>
+                                    </fieldset>
+                                    <hr>
+                                    <fieldset class="form-group">
+                                          <legend>What is the highest level of education you have completed?
+                                          </legend>
+                                          <label for="school1" class="paper-radio">
+                                                <input type="radio" name="school" id="school1" value="Some
+                                                highschool
+                                                or less" required>
+                                                <span>Some
+                                                      highschool
+                                                      or less</span>
+                                          </label>
+                                          <label for="school2" class="paper-radio">
+                                                <input type="radio" name="school" id="school2"
+                                                      value="High school diploma or GED">
+                                                <span>High school diploma or GED</span>
+                                          </label>
+                                          <label for="school3" class="paper-radio">
+                                                <input type="radio" name="school" id="school3"
+                                                      value="Some college but no degree">
+                                                <span>Some college but no degree</span>
+                                          </label>
+                                          <label for="school4" class="paper-radio">
+                                                <input type="radio" name="school" id="school4"
+                                                      value="Associates or technical degree">
+                                                <span>Associates or technical degree</span>
+                                          </label>
+                                          <label for="school5" class="paper-radio">
+                                                <input type="radio" name="school" id="school5"
+                                                      value="Bachelor's degree">
+                                                <span>Bachelor's degree</span>
+                                          </label>
+                                          <label for="school6" class="paper-radio">
+                                                <input type="radio" name="school" id="school6"
+                                                      value="Graduate or professional degree">
+                                                <span>Graduate or professional degree (MA, MS, MBA, PhD, JD, MD, DDS
+                                                      etc.)</span>
+                                          </label>
+                                    </fieldset>
+                                    <hr>
+
+                                    <fieldset class="form-group">
+                                          <legend>How many hour(s) do you spend playing video games per week?
+                                          </legend>
+                                          <label for="videogame1" class="paper-radio">
+                                                <input type="radio" name="videogame" id="videogame1" value="I
+                                                don't
+                                                play any video games" required> <span>I
+                                                      don't
+                                                      play any video games</span>
+                                          </label>
+                                          <label for="videogame2" class="paper-radio">
+                                                <input type="radio" name="videogame" id="videogame2"
+                                                      value="Less than 30 minutes">
+                                                <span>Less than 30 minutes</span>
+                                          </label>
+                                          <label for="videogame3" class="paper-radio">
+                                                <input type="radio" name="videogame" id="videogame3"
+                                                      value="30 minutes to 1 hour">
+                                                <span>30 minutes to 1 hour</span>
+                                          </label>
+                                          <label for="videogame4" class="paper-radio">
+                                                <input type="radio" name="videogame" id="videogame4"
+                                                      value="1 to 2 hours">
+                                                <span>1 to 2 hours</span>
+                                          </label>
+                                          <label for="videogame5" class="paper-radio">
+                                                <input type="radio" name="videogame" id="videogame5"
+                                                      value="2 hours and above">
+                                                <span>2 hours and above</span>
+                                          </label>
+
+                                    </fieldset>
+                                    <hr>
+                                    <p style="font-size: larger; font-family: sans-serif; margin-top: 100px;"> Please
+                                          rate the following statement on a scale from 1 (Strongly Disagree) to 5
+                                          (Strongly Agree):</p>
+                                    <table class="matrix-table table-hover border border-primary border-5" style="
+                                          
+                                           padding: 20px; font-family: sans-serif;">
+                                          <thead>
+
+                                                <tr>
+                                                      <th style="width: 20%;"></th>
+                                                      <th>Strongly disagree</th>
+                                                      <th>Somewhat disagree</th>
+                                                      <th>Neither agree nor disagree</th>
+                                                      <th>Somewhat agree</th>
+                                                      <th>Strongly agree</th>
+
+                                                </tr>
+
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td>Generally I would trust AI teammate</td>
+
+
+                                                      <td><input type="radio" name="p1" value="1" required>
+                                                      </td>
+
+
+                                                      <td><input type="radio" name="p1" value="2" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p1" value="3" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p1" value="4" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p1" value="5" required>
+                                                      </td>
+
+
+
+                                                </tr>
+                                                <tr>
+                                                      <td>AI teammate can help me solve many problems</td>
+
+
+                                                      <td><input type="radio" name="p2" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p2" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="p2" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="p2" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="p2" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>I think it is a good idea to rely on AI teammate for help</td>
+
+
+                                                      <td><input type="radio" name="p3" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p3" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="p3" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="p3" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="p3" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>I wouldn&apos;t trust the information I might get from AI
+                                                            teammate
+                                                      </td>
+
+
+                                                      <td><input type="radio" name="p4" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p4" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="p4" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="p4" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="p4" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>AI teammate are reliable</td>
+
+
+                                                      <td><input type="radio" name="p5" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p5" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="p5" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="p5" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="p5" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>I would rely on AI teammate</td>
+
+
+                                                      <td><input type="radio" name="p6" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="p6" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="p6" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="p6" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="pIC1">
+                                                      </td>
+
+                                                </tr>
+
+                                          </tbody>
+                                    </table>
+                                    <p style="font-size: larger; font-family: sans-serif; margin-top: 100px;"> Please
+                                          rate the following statement on a scale from 1 (Strongly Disagree) to 5
+                                          (Strongly Agree):</p>
+                                    <table class="matrix-table table-hover border border-primary border-5" style="
+                                          
+                                           padding: 20px; font-family: sans-serif;">
+                                          <thead>
+
+                                                <tr>
+                                                      <th style="width: 30%;"></th>
+                                                      <th>Strongly disagree</th>
+                                                      <th>Somewhat disagree</th>
+                                                      <th>Neither agree nor disagree</th>
+                                                      <th>Somewhat agree</th>
+                                                      <th>Strongly agree</th>
+
+                                                </tr>
+
+                                          </thead>
+                                          <tbody>
+                                                <tr>
+                                                      <td>I prefer to work with others in a group rather than working
+                                                            alone
+                                                      </td>
+
+
+                                                      <td><input type="radio" name="IC1" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="IC1" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="IC1" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="IC1" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="IC1" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Given the choice, I would rather do a job where I can work
+                                                            alone rather than doing a job where I have to work with
+                                                            others in a group</td>
+
+
+                                                      <td><input type="radio" name="IC2" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="IC2" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="IC2" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="IC2" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="IC2" value="5">
+                                                      </td>
+
+                                                </tr>
+                                                <tr>
+                                                      <td>Working with a group is better than working alone </td>
+
+
+                                                      <td><input type="radio" name="IC3" value="1" required>
+                                                      </td>
+                                                      <td><input type="radio" name="IC3" value="2">
+                                                      </td>
+                                                      <td><input type="radio" name="IC3" value="3">
+                                                      </td>
+                                                      <td><input type="radio" name="IC3" value="4">
+                                                      </td>
+                                                      <td><input type="radio" name="IC3" value="5">
+
+
+                                                </tr>
+
+                                          </tbody>
+                                    </table>
+
+
+
+
+
+
+
+                                    <div class="form-group" style=" margin-top: 2rem;">
+                                          <label for="no-resize">Please leave your feedbacks for the study if you
+                                                have any (optional):</label>
+                                          <textarea class="no-resize" id="no-resize" name="feedback"
+                                                placeholder="Leave your feedback here" maxlength="500"
+                                                style="height: 5rem; width: 100%;"></textarea>
+                                    </div>
+                                    <div id="button-wrapper" style="text-align: center; margin-top: 20px;">
+                                          <button type="submit">submit</button>
+                                    </div>
+                              </form>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</body>
+<script src="./dist/main.bundle.js"></script>
+
+
+
+
+</html>
